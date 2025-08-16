@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { register } from "@/services/auth.service";
+import { getErrorMessage } from "@/utils/errorHandler";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -20,9 +21,9 @@ export default function RegisterPage() {
     try {
       await register(name, email, password);
       router.push("/login");
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Registration failed");
-    } finally {
+    } catch (err: unknown) {
+      setError(getErrorMessage(err));
+    }finally {
       setLoading(false);
     }
   };

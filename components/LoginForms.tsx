@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/services/auth.service";
+import { getErrorMessage } from "@/utils/errorHandler";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,8 +20,8 @@ export default function LoginPage() {
     try {
       await login(email, password);
       router.push("/dashboard");
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed");
+    } catch (err: unknown) {
+      setError(getErrorMessage(err));
     } finally {
       setLoading(false);
     }
