@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      router.push("/dashboard");
+      router.push("/add-expense");
     } catch (err: unknown) {
       setError(getErrorMessage(err));
     } finally {

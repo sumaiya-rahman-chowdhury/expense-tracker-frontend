@@ -1,5 +1,5 @@
-import RegisterPage from "@/components/RegisterForm";
 import React from "react";
+import RegisterPage from "../components/RegisterForm";
 
 function Page() {
   return (
